@@ -1,0 +1,33 @@
+import time
+print('Can you guess the number..?')
+time.sleep(1)
+ans = input('y or n? : ').lower()
+if ans == 'n':
+    print('As you wish..))')
+if ans == 'y':
+    from random import randint
+    x = randint(1, 101)
+    while True:
+        time.sleep(1)
+        n = int(input('enter the number, please: '))
+        time.sleep(1.5)
+        if n < x:
+            print('Too little, try again.')
+            continue
+        if n > x:
+            print('Too much, try again.')
+            continue
+        if n == x:
+            print('You guessed it, congratulations!')
+            time.sleep(1.5)
+            ans2 = input('Play again? y or n? : ')
+            if ans2 == 'y':
+                continue
+            if ans2 == 'n':
+                break
+            else:
+                print('enter the correct answer ')
+#                ans2 = input('Play again? y or n? : ')
+else:
+    print('enter the correct answer ')
+#    ans = input('y or n? : ').lower()
