@@ -1,0 +1,70 @@
+#Поиграем в "Угадай число"
+import random
+import time
+print('Добро пожаловать в числовую угадайку!')
+time.sleep(0.5)
+
+#Диапазон
+def max_num():
+    while True:
+        time.sleep(0.25)
+        n = input('\nУкажите верхнюю границу угадываемого диапазона: ')
+        if not n.isdigit() or int(n) <= 1:
+            time.sleep(0.25)
+            print('Необходимо ввести целое число больше единицы!')
+            continue
+        else:
+            time.sleep(0.25)
+            return int(n)
+b = max_num()
+print('Хорошо))')
+
+#Защита от дурака
+def is_valid(n):
+    if n.isdigit():
+        return 1 <= int(n) <= b
+    return False
+
+#Ввод числа
+def input_num():
+    while True:
+        time.sleep(0.25)
+        num = input(f'\nУгадайте число от 1 до {b}: ')
+        if is_valid(num):
+            num = int(num)
+            time.sleep(0.25)
+            print('Отлично!')
+            return num
+        else:
+            time.sleep(0.25)
+            print(f'Необходимо ввести число от 1 до {b}')
+            continue
+
+#Сравнения
+def game():
+    count = 0
+    x = random.randint(1, b)
+    while True:
+        us_num = input_num()
+        if us_num < x:
+            time.sleep(0.25)
+            print('Но Ваше число меньше загаданного, попробуйте еще разок')
+            count += 1
+            continue
+        if us_num > x:
+            time.sleep(0.25)
+            print('Но Ваше число больше загаданного, попробуйте еще разок')
+            count += 1
+            continue
+        if us_num == x:
+            count += 1
+            time.sleep(0.25)
+            print('Вы угадали с ', count, '-й попытки. Поздравляем!', sep='')
+            time.sleep(0.15)
+            ask = input('Сыграем еще? (да/нет): ').lower()
+            if ask == 'да' or ask == 'lf':
+                game()
+            else:
+                print('Спасибо за игру! Удачи!')
+                break
+game()
