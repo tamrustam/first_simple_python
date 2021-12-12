@@ -1,0 +1,24 @@
+eng_low_alpha = 'abcdefghijklmnopqrstuvwxyz'
+eng_upp_alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+sn = ""
+len_k = 0
+l = input().split()
+for c in l:
+    for k in c:
+        if k.isalpha():
+            len_k += 1
+    
+    for k in c:
+        if k in eng_low_alpha:
+            sn += eng_low_alpha[(eng_low_alpha.index(k) + len_k) % 26]
+        if k in eng_upp_alpha:
+            sn += eng_upp_alpha[(eng_upp_alpha.index(k) + len_k) % 26]
+        if not k.isalpha():
+            sn += k
+    sn += " "
+    len_k = 0
+print(sn[:-1])
+
+#Sample Input: my name is Python!
+#Sample Output: oa reqi ku Veznut!
